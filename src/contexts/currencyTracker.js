@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import API from 'api'
 import { CURRENCY_TYPES } from 'utils/catalogs'
+import { dateToString } from 'utils'
+import { processCoinrexResponse, processBitlemResponse } from './utils'
 
 // The actual context
 const CurrencyContext = React.createContext({})
@@ -14,9 +16,9 @@ const refreshTime = 15000
 
 class CurrencyProvider extends Component {
   state = {
-    bitsoStats: {},
-    bitlemStats: {},
-    coinrexStats: {}
+    bitsoStats: [],
+    bitlemStats: [],
+    coinrexStats: []
   }
 
   componentDidMount () {
@@ -31,11 +33,22 @@ class CurrencyProvider extends Component {
   getBitsoStats = async () => {
     try {
       // Generate a bitso object
-      let bitsoStatsObject = {}
+      const bitsoStatsObject = {}
       // Fetch the currencies individually
       for (const currency of CURRENCY_TYPES) {
-        const response = await API.Currency.fetchBitsoStats(currency)
+        const {
+          data: {
+            payload: {
+              last
+            }
+          }
+        } = await API.Currency.fetchBitsoStats(currency)
+        bitsoStatsObject[currency] = last
       }
+      bitsoStatsObject.date = dateToString(new Date())
+      this.setState((prevState) => ({
+        coinrexStats: [...prevState.bitsoStats, bitsoStatsObject]
+      }))
     } catch (error) {
       console.error(error)
     }
@@ -44,6 +57,12 @@ class CurrencyProvider extends Component {
   getCoinrexStats = async () => {
     try {
       const response = await API.Currency.fetchCoinrexStats()
+
+      const coinrexStatsObject = processCoinrexResponse(response)
+      coinrexStatsObject.date = dateToString(new Date())
+      this.setState((prevState) => ({
+        coinrexStats: [...prevState.coinrexStats, coinrexStatsObject]
+      }))
     } catch (error) {
       console.error(error)
     }
@@ -52,6 +71,11 @@ class CurrencyProvider extends Component {
   getBitlemStats = async () => {
     try {
       const response = await API.Currency.fetchBitlemStats()
+      const bitlemStatsObject = processBitlemResponse(response)
+      bitlemStatsObject.date = dateToString(new Date())
+      this.setState((prevState) => ({
+        bitlemStats: [...prevState.bitlemStats, bitlemStatsObject]
+      }))
     } catch (error) {
       console.error(error)
     }
