@@ -9,7 +9,7 @@ import CryptoTracker from 'views/cryptoTracker'
 const Routes = () => {
   return (
     <Switch>
-      <Route path=':type' render={
+      <Route path='/:type' render={
         props => <CryptoTracker {...props} currentCurrency={props.match.params.type} />
       } />
       <Redirect from='/*' to={`/${BTC_TYPE}`}/>
