@@ -22,7 +22,6 @@ class Selector extends Component {
               }>
               {label}
             </Link>
-
           ))
         }
       </div>

@@ -17,7 +17,8 @@
       "views/*": ["./views/*"],
       "css/*": ["./css/*"],
       "routes/*": ["./routes/*"],
-      "utils/*": ["./utils/*"]
+      "utils/*": ["./utils/*"],
+      "contexts/*": ["./contexts/*"]
     }
   },
   "exclude": ["node_modules", "build"],
