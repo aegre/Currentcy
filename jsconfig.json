@@ -13,8 +13,11 @@
     "moduleResolution": "node",
     "baseUrl": "./src",
     "paths": {
-      "Components/*": ["./components/*"],
-      "Views/*": ["./views/*"],
+      "components/*": ["./components/*"],
+      "views/*": ["./views/*"],
+      "css/*": ["./css/*"],
+      "routes/*": ["./routes/*"],
+      "utils/*": ["./utils/*"]
     }
   },
   "exclude": ["node_modules", "build"],
