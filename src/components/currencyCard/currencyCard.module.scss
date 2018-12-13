@@ -11,4 +11,16 @@
   .provider {
     text-transform: uppercase;
   }
+  .history {
+    margin-top: 16px;
+    overflow: scroll;
+    max-height: 300px;
+    .item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 5px;
+      border-bottom: 1px solid gray;
+    }
+  }
 }

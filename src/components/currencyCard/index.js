@@ -11,17 +11,17 @@ class CurrencyCard extends Component {
       <div className={styles.card}>
         <h2>{lastPrice ? lastPrice[currency] : '-'}</h2>
         <p className={styles.provider}>{providerName}</p>
-        <table>
+        <div className={styles.history}>
           {
             history.map((historyItem) => (
-              <tr key={historyItem.date}>
-                <td>{historyItem.date}</td>
-                <td>{historyItem[currency]}</td>
-              </tr>
+              <div key={historyItem.date} className={styles.item}>
+                <p>{historyItem.date}</p>
+                <p>{historyItem[currency]}</p>
+              </div>
             ))
           }
 
-        </table>
+        </div>
       </div>
     )
   }
