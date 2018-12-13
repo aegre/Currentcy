@@ -14,12 +14,14 @@ class Selector extends Component {
       <div className={styles.selector}>
         {
           options.map(({ label, value }) => (
-            <Link to={value} key={`selector-option-${label}`}
+            <Link to={value}
+              key={`selector-option-${label}`}
               className={
                 classNames(styles.item, {
                   [styles.selected]: selected === value
                 })
-              }>
+              }
+            >
               {label}
             </Link>
           ))
@@ -33,7 +35,7 @@ Selector.propTypes = {
   options: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired
-  })),
+  })).isRequired,
   selected: PropTypes.string.isRequired
 }
 
