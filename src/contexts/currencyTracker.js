@@ -12,7 +12,7 @@ const CurrencyContext = React.createContext({})
 /**
  * The refreshing time
  */
-const refreshTime = 5000
+const refreshTime = 2000
 
 class CurrencyProvider extends Component {
   state = {

@@ -1,0 +1,15 @@
+.converter {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  height: 80px;
+  background-color: gray;
+  width: 100%;
+  left: 0;
+  align-items: center;
+  padding: 20px;
+  color: white;
+  * {
+    margin-right: 20px;
+  }
+}
