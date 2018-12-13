@@ -1,0 +1,14 @@
+.card {
+  background-color: #f8f9fa;
+  width: 30%;
+  min-height: 80px;
+  border: 1px solid darken(#f8f9fa, 10);
+  border-radius: 10px;
+  min-width: 250px;
+  max-width: 350px;
+  margin: 20px;
+  padding: 10px;
+  .provider {
+    text-transform: uppercase;
+  }
+}

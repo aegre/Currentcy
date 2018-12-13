@@ -1,24 +1,23 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { CURRENCY_OPTIONS } from 'utils/catalogs'
-import Selector from 'components/selector'
-import withCurrencyTrack from 'contexts/withCurrencyTrack'
-import CurrencyComparer from 'components/currencyComparer'
-class CryptoTracker extends Component {
+import CurrencyCard from 'components/currencyCard'
+import styles from './currencyComprarer.module.scss'
+
+class CurrencyComparer extends Component {
   render () {
-    const { bitsoStats, bitlemStats, coinrexStats } = this.props
-    const { currentCurrency } = this.props
+    const { bitsoStats, bitlemStats, coinrexStats, currency } = this.props
     return (
-      <React.Fragment>
-        <Selector options={CURRENCY_OPTIONS} selected={currentCurrency} />
-        <CurrencyComparer bitsoStats={bitsoStats} bitlemStats={bitlemStats} coinrexStats={coinrexStats} currency={currentCurrency} />
-      </React.Fragment>
+      <div className={styles.comparer}>
+        <CurrencyCard providerName='bitso' stats={bitsoStats} currency={currency} />
+        <CurrencyCard providerName='bitlem' stats={bitlemStats} currency={currency} />
+        <CurrencyCard providerName='coinrex' stats={coinrexStats} currency={currency} />
+      </div>
     )
   }
 }
 
-CryptoTracker.propTypes = {
-  currentCurrency: PropTypes.string.isRequired,
+CurrencyComparer.propTypes = {
+  currency: PropTypes.string.isRequired,
   bitsoStats: PropTypes.arrayOf(PropTypes.shape({
     date: PropTypes.string.isRequired,
     btc: PropTypes.string.isRequired,
@@ -39,4 +38,4 @@ CryptoTracker.propTypes = {
   })).isRequired
 }
 
-export default withCurrencyTrack(CryptoTracker)
+export default CurrencyComparer

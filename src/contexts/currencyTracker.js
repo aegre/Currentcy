@@ -12,7 +12,7 @@ const CurrencyContext = React.createContext({})
 /**
  * The refreshing time
  */
-const refreshTime = 15000
+const refreshTime = 5000
 
 class CurrencyProvider extends Component {
   state = {
@@ -47,7 +47,7 @@ class CurrencyProvider extends Component {
       }
       bitsoStatsObject.date = dateToString(new Date())
       this.setState((prevState) => ({
-        coinrexStats: [...prevState.bitsoStats, bitsoStatsObject]
+        bitsoStats: [bitsoStatsObject, ...prevState.bitsoStats]
       }))
     } catch (error) {
       console.error(error)
@@ -61,7 +61,7 @@ class CurrencyProvider extends Component {
       const coinrexStatsObject = processCoinrexResponse(response)
       coinrexStatsObject.date = dateToString(new Date())
       this.setState((prevState) => ({
-        coinrexStats: [...prevState.coinrexStats, coinrexStatsObject]
+        coinrexStats: [coinrexStatsObject, ...prevState.coinrexStats]
       }))
     } catch (error) {
       console.error(error)
@@ -74,7 +74,7 @@ class CurrencyProvider extends Component {
       const bitlemStatsObject = processBitlemResponse(response)
       bitlemStatsObject.date = dateToString(new Date())
       this.setState((prevState) => ({
-        bitlemStats: [...prevState.bitlemStats, bitlemStatsObject]
+        bitlemStats: [bitlemStatsObject, ...prevState.bitlemStats]
       }))
     } catch (error) {
       console.error(error)
