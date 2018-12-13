@@ -25,15 +25,15 @@ class CurrencyConverter extends Component {
         </div>
         <div>
           <h3>Bitso</h3>
-          <p>{conversionAmount / bitsoValue}</p>
+          <p>{bitsoValue ? conversionAmount / bitsoValue : 0}</p>
         </div>
         <div>
           <h3>Bitlem</h3>
-          <p>{conversionAmount / bitlemValue}</p>
+          <p>{bitlemValue ? conversionAmount / bitlemValue : 0}</p>
         </div>
         <div>
           <h3>Coinrex</h3>
-          <p>{conversionAmount / coinrexValue}</p>
+          <p>{coinrexValue ? conversionAmount / coinrexValue : 0}</p>
         </div>
       </div>
     )
