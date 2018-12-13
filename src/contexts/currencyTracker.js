@@ -1,6 +1,8 @@
 // Libraries
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import API from 'api'
+import { CURRENCY_TYPES } from 'utils/catalogs'
 
 // The actual context
 const CurrencyContext = React.createContext({})
@@ -26,16 +28,33 @@ class CurrencyProvider extends Component {
     this.setupTimers()
   }
 
-  getBitsoStats = () => {
-
+  getBitsoStats = async () => {
+    try {
+      // Generate a bitso object
+      let bitsoStatsObject = {}
+      // Fetch the currencies individually
+      for (const currency of CURRENCY_TYPES) {
+        const response = await API.Currency.fetchBitsoStats(currency)
+      }
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  getCoinrexStats = () => {
-
+  getCoinrexStats = async () => {
+    try {
+      const response = await API.Currency.fetchCoinrexStats()
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  getBitlemStats = () => {
-
+  getBitlemStats = async () => {
+    try {
+      const response = await API.Currency.fetchBitlemStats()
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   setupTimers = () => {
@@ -53,11 +72,11 @@ class CurrencyProvider extends Component {
   render () {
     const { children } = this.props
     return (
-      <CurrencyConsumer.Provider
+      <CurrencyContext.Provider
         value={{ ...this.state }}
       >
         {children}
-      </CurrencyConsumer.Provider>
+      </CurrencyContext.Provider>
     )
   }
 }

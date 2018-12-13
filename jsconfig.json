@@ -18,7 +18,8 @@
       "css/*": ["./css/*"],
       "routes/*": ["./routes/*"],
       "utils/*": ["./utils/*"],
-      "contexts/*": ["./contexts/*"]
+      "contexts/*": ["./contexts/*"],
+      "api/*": ["./api/*"]
     }
   },
   "exclude": ["node_modules", "build"],
